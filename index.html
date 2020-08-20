@@ -9,24 +9,25 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-    <p>{{message}}</p>
-    <button v-on:click="reverseMessage">
-    メッセージ反転
-    </button>
+        <p>{{message}}</p>
+        <p>{{ number + 5 }}</p>
+        <p>{{ ok? '成功':'失敗' }}</p>
+        <p>{{sayhi()}}</p>
     </div>
 
     <script>
         new Vue({
             el: '#app',
-        data: {
-            message: 'HelloWorld!'
-        },
-        methods:{
-            reverseMessage: function(){
-                this.message =
-        this.message.split('').reverse().join('')
+            data: {
+                message: 'HelloWorld!',
+                number: 3,
+                ok: false
+            },
+            methods: {
+                sayhi: function(){
+                    return 'こんにちは';
+                }
             }
-        }
         })
     </script>
 </body>
