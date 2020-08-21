@@ -9,23 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-        <p>{{message}}</p>
-        <p>{{ number + 5 }}</p>
-        <p>{{ ok? '成功':'失敗' }}</p>
-        <p>{{sayhi()}}</p>
+        <div>{{html}}</div>
+        <a :[attribute]="url">Googleページへ行くよ</a>
+        <a v-bind="twiiterObject">Twiiter</a>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-                message: 'HelloWorld!',
-                number: 3,
-                ok: false
-            },
-            methods: {
-                sayhi: function(){
-                    return 'こんにちは';
+                url: 'https://google.com',
+                attribute: 'href',
+                twiiterObject: {
+                    href: 'https://twitter.com',
+                    id: 31
                 }
             }
         })
