@@ -1,2 +1,3 @@
 # Vuejs
-Udemyで初めてのVuejs（学習記録)
+Udemyで初めてのVuejs（学習記録用)
+
