@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-        <p>{{counter}}</p>
-        <button @click="counter += 1">+1</button>
-        <p>{{ lessThanThree }}</p>
+        <h1 :class="{ red: isActive, 'bg-blue': !isActive }">Hello</h1>
+        <button @click="isActive = !isActive">切り替え</button>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-                counter: 0
-            },
-            computed: {
-                lessThanThree: function(){
-                    return this.counter > 31 ? '3以上' : '3以下'
-                }
+                isActive: true
             }
         })
     </script>
