@@ -10,27 +10,43 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="app">
-    <ul>
-        <div v-for="fruit in fruites" :key="fruit">
-            <p>{{fruit}}</p>
-            <input type="text">
-        </div>
-    </ul>
-    <button @click="remove">先頭を削除</button>
+        <p>{{message}}</p>
+        <p>{{name}}</p>
+        <p>{{myDate}}</p>
+        <button @click= "name = '変更できたよ'">変更</button>
     </div>
 
+    <div id="app2"></div>
+
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                fruites:["リング","ラッパ","積木"]
-            },
-            methods: {
-                remove: function(){
-                    this.fruites.shift()
+        var data1 = {
+            message: 'インスタンス１',
+            name: '名前'
+        }
+
+        var vm1 = new Vue({
+            //el: '#app',
+            data: data1 ,
+            computed: {
+                myDate: function (){
+                    return this.$data;
                 }
             }
         })
+
+        new Vue({
+            el: '#app2',
+            data: {
+                name: 'かっちゃん'
+            },
+            template: '<h2>こんちゃ、{{name}}</h2>'
+        }).$mount('#app')
+
+
+        vm1.$mount('#app')
+
+        console.log(vm1.$data === data)
+        console.log(vm1)
     </script>
 </body>
 </html>
