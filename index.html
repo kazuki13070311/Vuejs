@@ -13,10 +13,21 @@
         <p>{{message}}</p>
         <p>{{name}}</p>
         <p>{{myDate}}</p>
+        <hello></hello>
+        <hello></hello>
         <button @click= "name = '変更できたよ'">変更</button>
     </div>
 
     <div id="app2"></div>
+    <div id="app3"></div>
+    <div id="app4">
+        <h1>こんにちわわ、{{name}}</h1>
+        <button @click="name = '太郎さん'">名前変更</button>
+        <button @click="destroy">インスタンスを破壊</button>
+        <hello></hello>
+    </div>
+    <div class="hello"></div>
+    <hello></hello>
 
     <script>
         var data1 = {
@@ -24,8 +35,11 @@
             name: '名前'
         }
 
+        Vue.component('hello',{
+            template: '<p>こんちゃうう</p>'
+        });
+
         var vm1 = new Vue({
-            //el: '#app',
             data: data1 ,
             computed: {
                 myDate: function (){
@@ -39,14 +53,48 @@
             data: {
                 name: 'かっちゃん'
             },
-            template: '<h2>こんちゃ、{{name}}</h2>'
-        }).$mount('#app')
-
+            render: function(h) {
+                return h('h1','こんにちは！' + this.name);
+            }
+        }).$mount('#app3')
 
         vm1.$mount('#app')
 
-        console.log(vm1.$data === data)
-        console.log(vm1)
+        new Vue({
+            el: '#app4',
+            data: {
+                name: 'ジャイ子'
+            },
+            beforeCreate: function(){
+                console.log('beforeCreate');
+            },
+            created: function(){
+                console.log('Created');
+            },
+            beforeMount: function(){
+                console.log('beforeMount');
+            },
+            mounted: function(){
+                console.log('mounted');
+            },
+            beforeUpdate: function(){
+                console.log('beforeUpdate')
+            },
+            updated: function(){
+                console.log('update')
+            },
+            beforeDestroy: function(){
+                console.log('beforeDestroy')
+            },
+            destroyed: function(){
+                console.log('destroyed')
+            },
+            methods: {
+                destroy:function(){
+                    this.$destroy()
+                }
+            }
+        })
     </script>
 </body>
 </html>
