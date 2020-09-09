@@ -7,6 +7,11 @@ Vue.component('LikeNumber', LikeNumber);
 Vue.filter("upperCase", function(value){
   return value.toUpperCase();
 });
+Vue.mixin({
+  created() {
+    console.log("global Mixin")
+  }
+});
 
 
 new Vue({
