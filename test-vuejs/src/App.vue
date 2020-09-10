@@ -1,12 +1,43 @@
 <template>
   <div class="main"> 
+    <button @click="myAnimation = 'slide'">Slide</button>
+    <button @click="myAnimation = 'Fade'">Fade</button>
+    <p>{{ myAnimation }}</p>
     <button @click="show = !show">切り替え</button>
-    <transition name="fade">
+    <br><br>
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @enter-cancelled="enterCancelled"
+
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @leave-cancelled="leaveCancelled"
+    >
+      <div class="circle" v-if="show"></div>
+    </transition>
+    <br>
+    <button @click="myComponent = 'ComponentA'">ComponentA</button>
+    <button @click="myComponent = 'ComponentB'">ComponentB</button>
+    <transition name="fade" mode="out-in">
+      <component :is="myComponent"></component>
+    </transition>
+    <transition name="fade" mode="out-in">
+      <p v-if="show" key="bye">さよなら</p>
+      <p v-else key="hello">こんにちは</p>
+    </transition>
+    <transition
+      enter-active-class="animate__animated animate__bounce"
+      leave-active-class="animate__animated animate__shakeX"
+      appear
+    >
       <p v-if="show">hello</p>
     </transition>
     <transition 
-      name="slide" 
-      type="animation"
+      :name="myAnimation" 
+      appear
     >
       <p v-show="show">bye</p>
     </transition>
@@ -14,16 +45,59 @@
 </template>
 
 <script>
+import ComponentA from "./components/ComponentA.vue"
+import ComponentB from "./components/ComponentB.vue"
+
 export default {
+  components: {
+    ComponentA,
+    ComponentB
+  },
   data(){
     return {
-      show: true
+      show: true,
+      myAnimation: "slide",
+      myComponent: "ComponentA"
     };
+  },
+  methods: {
+    beforeEnter(el){
+    
+    },
+    enter(el, done){
+
+    },
+    afterEnter(el){
+
+    },
+    enterCancelled(el){
+
+    },
+    beforeLeave(el){
+
+    },
+    leave(el, done){
+
+    },
+    afterLeave(el){
+
+    },
+    leaveCancelled(el){
+
+    },
   }
 }
 </script>
 
 <style scoped>
+.circle {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 100px;
+  background-color: deeppink;
+}
+
 .fade-enter {
   opacity: 0;
 }
