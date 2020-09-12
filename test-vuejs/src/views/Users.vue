@@ -4,18 +4,13 @@
         <router-link to="/users/1">ユーザー1</router-link>
         <router-link to="/users/2">ユーザー２</router-link>
         <hr>
-        <h1>ユーザー No. {{ $route.params.id }}</h1>
+        <h1>User No. {{ id }}</h1>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 export default {
-    watch: {
-        $route(to, from){
-            console.log(to);
-            console.log(from);
-            console.log("$routerが変わった")
-        }
-    }
+    props: ["id"],
 };
 </script>

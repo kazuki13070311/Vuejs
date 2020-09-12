@@ -18,6 +18,10 @@
   </div>
 </template>
 
+<script>
+
+</script>
+
 <style scoped>
   .link {
     margin-right: 10px;
