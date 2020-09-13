@@ -19,12 +19,13 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import { mapActions } from "vuex";
+
 export default {
   methods: {
-    ...mapMutations(["increment","decrement"])
+    ...mapActions("count",["increment","decrement"])
   }
-}
+};
 </script>
 
 <style scoped>
